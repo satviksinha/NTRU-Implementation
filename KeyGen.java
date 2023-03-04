@@ -3,16 +3,16 @@ import java.util.ArrayList;
 public class KeyGen
 {
     //parameters of NTRU
-    private int degree;
+    private int deg;
     private int p;
     private int q;
     private int df;
     private int dg;
-    private ArrayList<Integer> publicKey = new ArrayList<Integer>(degree+1);
+    private ArrayList<Integer> publicKey = new ArrayList<Integer>(deg+1);
     private ArrayList<ArrayList<Integer>> privateKey = new ArrayList<ArrayList<Integer>>(2);
 
     public KeyGen(int degree,int p,int q, int df, int dg){
-        this.degree = degree;
+        this.deg = degree;
         this.p = p;
         this.q = q;
         this.df = df;
@@ -22,8 +22,8 @@ public class KeyGen
     public void KeyGeneration()
     {   
         //creation of random polynomials
-        ArrayList<Integer> f = RandPol.RandP(df,df - 1,degree + 1);
-        ArrayList<Integer> g = RandPol.RandP(dg,dg,degree + 1); 
+        ArrayList<Integer> f = RandPol.RandP(df,df - 1,deg + 1);
+        ArrayList<Integer> g = RandPol.RandP(dg,dg,deg + 1); 
 
         //Calculating Inverses
         ArrayList<Integer> finvp = InverseGFp.CalculateInverse(p, f); 
