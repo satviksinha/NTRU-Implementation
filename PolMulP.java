@@ -5,7 +5,7 @@ public class PolMulP
     // This function multiplies two poylomials from a polynomial ring of degree n - 1 
     // result : A polynomial in the same ring with coefficients reduced modulo q
     
-    public static ArrayList<Integer> PolMulq(ArrayList<Integer> pol1, ArrayList<Integer> pol2,int p)
+    public static ArrayList<Integer> PolMulp(ArrayList<Integer> pol1, ArrayList<Integer> pol2,int p)
     {
         ArrayList<Integer> output = new ArrayList<Integer>(pol1.size());
         

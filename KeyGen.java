@@ -26,15 +26,24 @@ public class KeyGen
         ArrayList<Integer> g = RandPol.RandP(dg,dg,deg + 1); 
 
         //Calculating Inverses
+
+        
         ArrayList<Integer> finvp = InverseGFp.CalculateInverse(p, f); 
         ArrayList<Integer> finvq = InverseGFq.CalculateInverse(q, f);
+        while(finvp == null || finvq == null)
+        {
+            f = RandPol.RandP(df,df - 1,deg + 1);
+            finvp = InverseGFp.CalculateInverse(p, f); 
+            finvq = InverseGFq.CalculateInverse(q, f);
+        }
 
         for(int i=0;i<finvp.size();i++)
             finvq.set(i,finvq.get(i)*p);
 
             
         //set public key
-        publicKey = PolMulQ.PolMulq(g, finvq, q);     
+        publicKey = PolMulQ.PolMulq(g, finvq, q);  
+       
 
         //setting private key
         privateKey.set(0,f);
