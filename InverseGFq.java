@@ -7,7 +7,7 @@ public class InverseGFq
     private static int modInverse(int n,int q){
         for(int i=1;i<q;i++)
         {
-            if((i*n) % q == 1)
+            if(Math.floorMod((i*n) , q) == 1)
             {
                 return i;
             }
@@ -19,10 +19,12 @@ public class InverseGFq
     public static void main(String args[])
     {
         ArrayList<Integer> input = new ArrayList<Integer>();
+        input.add(-1);
         input.add(0);
         input.add(1);
         input.add(1);
-        ArrayList<Integer> temp = CalculateInverse(2,input);
+        
+        ArrayList<Integer> temp = CalculateInverse(7,input);
 
         if(temp == null)
             System.out.println("Inverse doesn't exist");
@@ -60,12 +62,22 @@ public class InverseGFq
        
         Matrix A = new Matrix(mat);
         Matrix B = new Matrix(congruence,congruence.length);
-        Matrix X = A.solve(B);
+        Matrix X ;
+        try
+        {
+            X = A.solve(B);
+        }
+
+        catch(Exception e)
+        {
+            return null;
+        }
         
         double determinant = A.det();
+        
 
         int h = modInverse(Math.floorMod((int)determinant, q),q);
-        //System.out.println(Math.floorMod(-4,3));
+        
         if(h == -1)
         {
             //inverse does not exist for the given polynomial
@@ -74,9 +86,10 @@ public class InverseGFq
        
         for(int i = 0; i < X.getRowDimension(); i++)
         {
-            output.add(((int)(X.get(i,0)*determinant*h))%q);
+            output.add(Math.floorMod(Math.round(X.get(i,0)*determinant*h),q));
         }
         
         return output;
+        
     }
 }

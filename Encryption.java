@@ -5,18 +5,18 @@ public class Encryption
     //parameters of NTRU
     private int deg;
     private int q;
-    private int df;
+    private int dr;
 
-    public Encryption(int degree,int q, int df){
+    public Encryption(int degree,int q, int dr){
         this.deg = degree;
         this.q = q;
-        this.df = df;
+        this.dr = dr;
     }
 
     public ArrayList<Integer> Encrypt(ArrayList<Integer> publicKey,ArrayList<Integer> m)
     {   
         //creation of random polynomial
-        ArrayList<Integer> r = RandPol.RandP(df,df - 1,deg + 1);
+        ArrayList<Integer> r = RandPol.RandP(dr,dr,deg + 1);
 
         //Calculating Encrypted Message
         ArrayList<Integer> temp = PolMulQ.PolMulq(publicKey, r, q);
@@ -24,4 +24,7 @@ public class Encryption
 
         return e;
     }
+
+    
 }
+

@@ -1,7 +1,9 @@
-import java.util.ArrayList;
+//tested - working correct
+import java.util.*;
 
 class Sum2PolQ
 {
+    //methods
     public static ArrayList<Integer>  Add(ArrayList<Integer> pol1, ArrayList<Integer>pol2, int q)
     {
         int i;
@@ -9,7 +11,7 @@ class Sum2PolQ
         
         for(i = 0; i < pol1.size(); i++)
         {
-            answer.set(i, (pol1.get(i) + pol2.get(i)) % q); 
+            answer.add(Math.floorMod((pol1.get(i) + pol2.get(i)) , q)); 
         }
 
         return answer;

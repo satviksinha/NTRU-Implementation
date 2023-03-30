@@ -46,8 +46,8 @@ public class KeyGen
        
 
         //setting private key
-        privateKey.set(0,f);
-        privateKey.set(1,finvp);
+        privateKey.add(f);
+        privateKey.add(finvp);
     }
 
     public ArrayList<ArrayList<Integer>> getPrivateKey()
@@ -58,4 +58,5 @@ public class KeyGen
     public ArrayList<Integer> getPublicKey(){
         return publicKey;
     }
+
 }

@@ -1,6 +1,5 @@
 import Jama.*;
-import java.util.ArrayList;
-import java.util.Collections;  
+import java.util.*;  
 
 public class InverseGFp 
 {
@@ -18,19 +17,18 @@ public class InverseGFp
 
     public static void main(String args[])
     {
-        ArrayList<Integer> input = new ArrayList<Integer>()n;
-        input.add(1);
-        input.add(0);
-        input.add(-1);
-        
-        
-        ArrayList<Integer> temp = CalculateInverse(7,input);
+        ArrayList<Integer> input = new ArrayList<Integer>();
+        for(int i=0;i<20;i++){
+            input.add(Math.random() > 0.5 ? 1 : 0);
+        }
+       
+        ArrayList<Integer> temp = CalculateInverse(3,input);
 
         if(temp == null)
             System.out.println("Inverse doesn't exist");
-        else
-            for(int i = 0; i < temp.size(); i++)
-                System.out.println(temp.get(i));
+        // else
+        //     for(int i = 0; i < temp.size(); i++)
+        //         System.out.println(temp.get(i));
     }
 
 
@@ -74,9 +72,12 @@ public class InverseGFp
         }
         
         double determinant = A.det();
+        //System.out.println("determinant" + determinant);
+        
 
-        int h = modInverse(Math.floorMod((int)determinant, p),p);
-        //System.out.println(Math.floorMod(-4,3));
+        int h = modInverse(Math.floorMod(Math.round(determinant), p),p);
+        //System.out.println("determinant" + h);
+        
         if(h == -1)
         {
             //inverse does not exist for the given polynomial
@@ -85,9 +86,11 @@ public class InverseGFp
        
         for(int i = 0; i < X.getRowDimension(); i++)
         {
-            output.add(Math.floorMod(((int)(X.get(i,0)*determinant*h)),p));
+            output.add(Math.floorMod(Math.round(X.get(i,0)*determinant*h),p));
+            //System.out.println("output" + output.get(i));
         }
         
         return output;
+        
     }
 }
